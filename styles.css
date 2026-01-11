@@ -1,0 +1,464 @@
+/* ========================================
+   Steven Ray — Neon Punk
+   ======================================== */
+
+:root {
+    /* Dark base */
+    --color-bg: #0a0a0a;
+    --color-bg-elevated: #141414;
+    --color-text: #ffffff;
+    --color-text-muted: #666666;
+
+    /* Neon palette */
+    --neon-pink: #ff2d7a;
+    --neon-cyan: #00f0ff;
+    --neon-lime: #c8ff00;
+    --neon-purple: #bf5fff;
+
+    /* Primary accent */
+    --color-accent: var(--neon-lime);
+
+    /* Typography */
+    --font-display: 'Space Grotesk', -apple-system, sans-serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+
+    --space-unit: 1.5rem;
+    --max-width: 900px;
+}
+
+/* ========================================
+   Reset
+   ======================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========================================
+   Base
+   ======================================== */
+body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Heavy grain overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.15;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Neon glow on page edges */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-pink), var(--neon-cyan), var(--neon-lime), transparent);
+    z-index: 999;
+}
+
+main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: calc(var(--space-unit) * 6) calc(var(--space-unit) * 1.5);
+    padding-bottom: calc(var(--space-unit) * 4);
+    position: relative;
+}
+
+a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all 0.15s ease;
+}
+
+a:hover {
+    color: var(--color-accent);
+    text-shadow: 0 0 20px var(--color-accent);
+}
+
+::selection {
+    background: var(--neon-pink);
+    color: black;
+}
+
+/* ========================================
+   Header — BIG and BOLD
+   ======================================== */
+.header {
+    margin-bottom: calc(var(--space-unit) * 5);
+}
+
+.name {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 15vw, 8rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    margin-bottom: calc(var(--space-unit) * 0.75);
+    text-transform: uppercase;
+    background: linear-gradient(135deg, var(--neon-lime) 0%, var(--neon-cyan) 50%, var(--neon-pink) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glowPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+    from {
+        filter: drop-shadow(0 0 20px rgba(200, 255, 0, 0.3));
+    }
+    to {
+        filter: drop-shadow(0 0 40px rgba(200, 255, 0, 0.5));
+    }
+}
+
+.title {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* ========================================
+   Bio
+   ======================================== */
+.bio {
+    margin-bottom: calc(var(--space-unit) * 5);
+    padding-left: calc(var(--space-unit) * 1);
+    border-left: 3px solid var(--neon-pink);
+}
+
+.bio p {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    max-width: 600px;
+}
+
+/* ========================================
+   Credentials
+   ======================================== */
+.credentials {
+    margin-bottom: calc(var(--space-unit) * 5);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(var(--space-unit) * 3);
+}
+
+.credential-group {
+    margin-bottom: 0;
+}
+
+.credential-group h2 {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--neon-cyan);
+    margin-bottom: calc(var(--space-unit) * 1);
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.credential-group ul {
+    list-style: none;
+}
+
+.credential-group li {
+    padding: calc(var(--space-unit) * 0.5) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.15s ease;
+}
+
+.credential-group li:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.credential-group li:hover {
+    background: var(--color-bg-elevated);
+    padding-left: calc(var(--space-unit) * 0.5);
+    margin-left: calc(var(--space-unit) * -0.5);
+    padding-right: calc(var(--space-unit) * 0.5);
+    margin-right: calc(var(--space-unit) * -0.5);
+    border-color: var(--neon-lime);
+}
+
+.credential-group li a,
+.credential-group li:not(:has(a)) {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-unit);
+}
+
+.credential-group li a {
+    text-decoration: none;
+}
+
+.credential-group li a:hover {
+    text-shadow: none;
+}
+
+.credential-group li a:hover .company {
+    color: var(--neon-lime);
+    text-shadow: 0 0 15px var(--neon-lime);
+}
+
+.company {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    transition: all 0.15s ease;
+}
+
+.role {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ========================================
+   Contact
+   ======================================== */
+.contact {
+    margin-bottom: calc(var(--space-unit) * 2);
+}
+
+.contact h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: calc(var(--space-unit) * 1);
+    color: var(--color-text);
+}
+
+.links {
+    list-style: none;
+    display: flex;
+    gap: calc(var(--space-unit) * 2);
+}
+
+.links a {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--color-text);
+    transition: all 0.15s ease;
+}
+
+.links a:hover {
+    background: var(--neon-lime);
+    border-color: var(--neon-lime);
+    color: black;
+    text-shadow: none;
+    box-shadow: 0 0 30px var(--neon-lime);
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+footer {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 1.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer p {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.footer-link {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+}
+
+.footer-link:hover {
+    color: var(--neon-lime);
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 768px) {
+    .credentials {
+        grid-template-columns: 1fr;
+        gap: calc(var(--space-unit) * 2);
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        padding-top: calc(var(--space-unit) * 4);
+    }
+
+    .name {
+        font-size: 3rem;
+    }
+
+    .bio p {
+        font-size: 1.125rem;
+    }
+
+    .links {
+        flex-direction: column;
+        gap: calc(var(--space-unit) * 0.75);
+    }
+
+    .links a {
+        text-align: center;
+    }
+}
+
+/* ========================================
+   Writings Page
+   ======================================== */
+.writings-header {
+    margin-bottom: calc(var(--space-unit) * 4);
+}
+
+.back-link {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    display: inline-block;
+    margin-bottom: calc(var(--space-unit) * 1);
+}
+
+.back-link:hover {
+    color: var(--neon-lime);
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: var(--color-text);
+}
+
+.writings-list {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-unit) * 2);
+}
+
+.writing-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: calc(var(--space-unit) * 2);
+}
+
+.writing-item:last-child {
+    border-bottom: none;
+}
+
+.writing-item a {
+    display: block;
+    padding: calc(var(--space-unit) * 1);
+    margin: calc(var(--space-unit) * -1);
+    border-radius: 4px;
+    transition: all 0.15s ease;
+}
+
+.writing-item a:hover {
+    background: var(--color-bg-elevated);
+    text-shadow: none;
+}
+
+.writing-item a:hover .writing-title {
+    color: var(--neon-lime);
+    text-shadow: 0 0 20px var(--neon-lime);
+}
+
+.writing-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: calc(var(--space-unit) * 0.5);
+    transition: all 0.15s ease;
+}
+
+.writing-excerpt {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: calc(var(--space-unit) * 0.5);
+}
+
+.writing-date {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--neon-cyan);
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    body::before,
+    body::after {
+        display: none;
+    }
+
+    .name {
+        -webkit-text-fill-color: black;
+        background: none;
+    }
+}
