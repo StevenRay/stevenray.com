@@ -17,7 +17,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../styles.css">
     <style>
@@ -28,17 +28,16 @@
         .article-header {
             margin-bottom: calc(var(--space-unit) * 4);
             padding-bottom: calc(var(--space-unit) * 2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .article-title {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 6vw, 3rem);
             font-weight: 700;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.02em;
             line-height: 1.1;
             margin-bottom: calc(var(--space-unit) * 1);
-            text-transform: uppercase;
         }
 
         .article-meta {
@@ -64,7 +63,7 @@
             font-weight: 700;
             margin-top: calc(var(--space-unit) * 3);
             margin-bottom: calc(var(--space-unit) * 1);
-            color: var(--neon-cyan);
+            color: var(--color-text);
         }
 
         .article-content ul {
@@ -79,12 +78,12 @@
         }
 
         .article-content strong {
-            color: var(--neon-lime);
+            color: var(--color-accent);
         }
 
         .article-content code {
             font-family: 'SF Mono', 'Fira Code', monospace;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.06);
             padding: 0.15em 0.4em;
             border-radius: 4px;
             font-size: 0.9em;
