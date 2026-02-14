@@ -17,7 +17,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../styles.css">
     <style>
@@ -32,9 +32,9 @@
         }
 
         .article-title {
-            font-family: var(--font-serif);
+            font-family: var(--font-name);
             font-size: clamp(2rem, 6vw, 3rem);
-            font-weight: 700;
+            font-weight: 400;
             letter-spacing: -0.02em;
             line-height: 1.1;
             margin-bottom: calc(var(--space-unit) * 1);
@@ -91,14 +91,92 @@
 
         <article>
             <header class="article-header">
-                <h1 class="article-title">Cross LLM Shared Memory</h1>
-                <p class="article-meta">Coming Soon</p>
+                <h1 class="article-title">The Memory Silo Problem: Why Your AI Tools Can't Remember Each Other</h1>
+                <p class="article-meta">December 2025</p>
             </header>
 
             <div class="article-content">
-                <div class="coming-soon">
-                    <p>This piece is being written.</p>
-                </div>
+                <p>Right now, somewhere, an engineer is explaining the same project context to three different AI tools.</p>
+
+                <p>They told Claude Code about the authentication architecture this morning. They'll re-explain it to Codex this afternoon when they switch editors. Tomorrow, when they ask Gemini to review a design doc, they'll describe it all over again. The same constraints, the same decisions, the same history, as if the previous conversations never happened.</p>
+
+                <p>Each tool remembers in isolation. None of them talk to each other. And the person in the middle, the one doing the actual work, becomes a manual bridge between AI systems that are each, individually, getting smarter, but collectively, learning nothing.</p>
+
+                <p>This is the memory silo problem. And it's about to become one of the most important infrastructure challenges in AI.</p>
+
+                <h2>How We Got Here</h2>
+
+                <p>Every major AI platform is building memory. Claude has project knowledge. ChatGPT has memory and custom instructions. Gemini has persistent context. Codex retains session history. These are all genuine improvements over the blank-slate experience of a year ago.</p>
+
+                <p>But they all share the same fundamental design: memory belongs to the tool.</p>
+
+                <p>Your Claude memory lives inside Claude. Your ChatGPT memory lives inside ChatGPT. They don't share a protocol, a format, or an incentive to interoperate. From each platform's perspective, this makes perfect sense. Memory is a moat. The more context a user invests in one tool, the harder it becomes to leave.</p>
+
+                <p>From the user's perspective, it's a disaster in slow motion.</p>
+
+                <p>People don't use one AI tool. They use several, and the number is growing. I use Claude for deep reasoning, ChatGPT for certain creative tasks, Grok when I want real-time context, Gemini for Google ecosystem stuff, and Perplexity when I need research-grade answers. That's five tools, and none of them know what I told the others yesterday.</p>
+
+                <p>A developer might use Claude Code for implementation, Codex for autonomous tasks, Gemini for research, and ChatGPT for brainstorming. A product manager might use one tool for writing specs, another for analyzing data, and a third for drafting communications. The average knowledge worker will soon interact with five or more AI systems in a given week.</p>
+
+                <p>Each of those systems builds a partial, siloed understanding of the person and their work. None of them have the full picture. And the user is left doing what computers are supposed to do for them: carrying context between systems manually.</p>
+
+                <h2>Isolated Memory Makes Every Tool Dumber</h2>
+
+                <p>Here's what's counterintuitive about this: the better each tool's individual memory gets, the <em>worse</em> the overall experience becomes.</p>
+
+                <p>When Claude Code deeply understands your codebase but Codex doesn't, the gap between them becomes jarring. You go from a rich, context-aware conversation to what feels like talking to a brand new hire on their first day. When ChatGPT remembers your communication preferences but Gemini doesn't, every interaction with Gemini feels slightly off. Like it should know you by now, but it doesn't.</p>
+
+                <p>The inconsistency itself becomes a source of friction. Users start mentally tracking which tool knows what. They develop strategies for which context to repeat and which to skip. They build personal systems, docs, templates, prompts, to manually synchronize their AI tools.</p>
+
+                <p>Think about that for a second. We're building personal middleware to make our AI tools work together. That is the exact problem AI was supposed to eliminate.</p>
+
+                <p>It also creates a subtle but real degradation in the quality of each tool's understanding. No single tool sees the full scope of your work, so no single tool can offer truly informed assistance. Claude Code sees your implementation sessions but not the design discussions you had in Gemini. Codex sees the autonomous tasks but not the architectural reasoning from your Claude Code sessions. Each tool works with a fragment, and fragments produce fragmented advice.</p>
+
+                <h2>What Shared Memory Actually Looks Like</h2>
+
+                <p>The alternative isn't complicated conceptually. It's the same idea that made the internet work: a shared layer that different systems can read from and write to.</p>
+
+                <p>Imagine a memory layer that sits <em>beneath</em> your AI tools rather than inside them. When you make a decision in Claude Code, choosing one architecture over another, discovering a quirk in a third-party API, establishing a naming convention, that context gets captured and stored in a place that isn't owned by Claude. When you open Codex an hour later, it pulls from the same memory. The architectural decision you made this morning is already there. The naming convention is already understood. The API quirk doesn't need to be re-explained.</p>
+
+                <p>This isn't about syncing chat histories. Raw transcripts from one tool are useless to another. What matters is the distilled knowledge: the decisions, patterns, constraints, and lessons that emerged from the work. A shared memory layer would store summarized, structured, validated context that any AI tool can consume.</p>
+
+                <p>The result is that switching tools stops feeling like switching brains. Your AI ecosystem begins to function as a single, coherent intelligence that happens to have different interfaces for different tasks.</p>
+
+                <h2>Beyond Code: Where This Is Heading</h2>
+
+                <p>Software engineering is the canary in the coal mine for this problem because developers were the first power users of multiple AI tools simultaneously. But the memory silo problem will eventually touch everyone.</p>
+
+                <p><strong>Families.</strong> A family of four might use AI for meal planning, homework help, travel coordination, budget management, and medical questions. Today, the tool that helps plan meals doesn't know about the dietary restrictions discussed with the medical AI. The homework tutor doesn't know the child's learning style that emerged over months of sessions with a different tool. Imagine a shared family memory where the context of "Dad is training for a marathon" flows naturally from the fitness AI to the meal planner to the calendar assistant, without anyone having to say it twice.</p>
+
+                <p><strong>Small businesses.</strong> A freelance designer uses one AI for client communication, another for design feedback, and a third for invoicing and contracts. None of them know that a particular client always requests revisions on color palette, pays late, and prefers informal language. That context exists, scattered across three tools, useful to all of them, accessible to none.</p>
+
+                <p><strong>Healthcare.</strong> A patient interacts with an AI symptom checker, a therapy chatbot, a nutrition advisor, and a fitness coach. Each builds an isolated model of the person. The therapy chatbot doesn't know about the sleep issues discussed with the symptom checker. The nutrition advisor doesn't know about the anxiety patterns the therapy chatbot has identified. The potential for a holistic, connected understanding of a person's health is enormous, but only if memory isn't trapped in silos.</p>
+
+                <p><strong>Education.</strong> A student uses AI tutors across subjects: math, writing, science, language learning. Today, each tutor starts fresh. But learning patterns cross disciplines. The spatial reasoning strengths that emerge in math tutoring could inform how the science tutor explains molecular structures. The writing style insights could shape how the language tutor approaches composition. Shared memory across educational AI would create a composite understanding of how a person <em>learns</em>, not just what they've learned.</p>
+
+                <p><strong>Aging and continuity.</strong> This might be the most profound long-term application: a person's accumulated AI memory as a form of cognitive continuity. Preferences, relationships, health history, communication style, decision-making patterns, all built up over years across dozens of AI interactions. Not owned by any single company, but available to whatever tools that person chooses to use. A form of digital self-knowledge that persists and grows, regardless of which platforms rise and fall.</p>
+
+                <h2>The Ownership Question</h2>
+
+                <p>This is where it gets interesting, and where the incentives get complicated.</p>
+
+                <p>If memory is the moat, no platform has a natural incentive to make it portable. Opening memory to other tools means reducing switching costs, which means reducing lock-in, which means competing on capability alone. Some companies will resist this for as long as they can. I get it. I've built companies. I understand moats. But this one won't hold.</p>
+
+                <p>The pressure will come from users, and it will be relentless. The same forces that drove data portability regulations, open API standards, and interoperability requirements will eventually arrive at AI memory. People will demand ownership of their context. They'll want to take their memory with them when they switch tools, share it across their household, and control who has access to it.</p>
+
+                <p>The question is whether this layer gets built by the platforms themselves (reluctantly, under pressure) or whether it gets built independently, as infrastructure that sits between the user and their tools.</p>
+
+                <p>I think about this a lot. Today, the most acute version of this problem lives in engineering teams whose AI coding sessions disappear and can't talk to each other. But the underlying principle is the same one that will eventually apply to every domain. Memory should belong to the person, not the platform. Context should flow where it's needed, not stay trapped where it was created.</p>
+
+                <h2>What Happens Next</h2>
+
+                <p>We're at an inflection point. The first generation of AI memory was "remember things inside this tool." The second generation, the one being built right now, is "remember things across tools, across people, across time."</p>
+
+                <p>The teams and companies that build for the second generation will have a meaningful head start. Not because cross-LLM memory is a feature, but because it's a fundamentally different relationship between people and their AI tools. It's the difference between having a collection of assistants who each know a piece of your life and having a continuous, connected intelligence that understands the whole picture.</p>
+
+                <p>The silo era of AI memory is a temporary phase. It exists because we're early, because platforms haven't been pressured to interoperate yet, and because the infrastructure for shared memory hasn't matured. But the trajectory is clear. The same way we moved from isolated desktop applications to connected cloud services, we'll move from isolated AI memories to shared context layers.</p>
+
+                <p>The only question is how much context we'll lose in the meantime. And honestly, the answer right now is: way too much.</p>
             </div>
         </article>
     </main>
