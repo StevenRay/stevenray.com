@@ -17,7 +17,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../styles.css">
     <style>
@@ -91,14 +91,76 @@
 
         <article>
             <header class="article-header">
-                <h1 class="article-title">Context Graphing</h1>
-                <p class="article-meta">Coming Soon</p>
+                <h1 class="article-title">The Context Problem Nobody Is Talking About</h1>
+                <p class="article-meta">February 2026</p>
             </header>
 
             <div class="article-content">
-                <div class="coming-soon">
-                    <p>This piece is being written.</p>
-                </div>
+                <p>There's a gap forming in how software gets built, and most teams are sleepwalking right past it.</p>
+
+                <p>Over the past two years, AI coding assistants have gone from novelty to infrastructure. Engineers are pairing with Claude, Cursor, Copilot, whatever fits. The productivity gains are real. I've seen it firsthand across multiple teams. But something important is getting lost in the process, and it's happening so quietly that most teams won't realize it until they're paying for it.</p>
+
+                <p>Every AI coding session produces context. Not just code, but <em>context</em>. Why this approach was chosen over that one. What was tried and failed. What undocumented behavior got discovered in a third-party API. What a senior engineer decided when two perfectly valid architectures were sitting on the table.</p>
+
+                <p>Then the session ends. And all of it vanishes.</p>
+
+                <p>Gone. Like it never happened.</p>
+
+                <h2>We've Been Here Before</h2>
+
+                <p>Software engineering has always had a context problem. The gap between what the code says and <em>why the code exists</em> has been around since the first <code>// TODO: fix this later</code> comment. We've tried to close it with wikis, ADRs, post-mortems, onboarding docs, and Slack channels nobody reads named things like <code>#engineering-decisions</code>.</p>
+
+                <p>None of it stuck. Not because the intentions were bad (the intentions were great) but because capturing context has always required a separate, deliberate act. Engineers have to stop what they're doing, switch tools, and write down what just happened in a format someone else <em>might</em> find useful later.</p>
+
+                <p>That's friction. And friction loses to deadlines every single time. I've managed enough engineering teams to know this isn't a discipline problem. It's a workflow problem.</p>
+
+                <p>AI sessions changed the equation. For the first time, the richest engineering context, the actual reasoning, the dead ends, the tradeoffs, is already being articulated in conversation. It's right there. Engineers are literally narrating their decision-making to an AI assistant in real time.</p>
+
+                <p>And then we throw it away. Every. Single. Day.</p>
+
+                <h2>Decision Traces Are the Real Artifact</h2>
+
+                <p>There's a useful distinction between state and trace that most people overlook. Your codebase is state, the current snapshot of what exists. Your git history is a log of changes to that state. But neither one captures the <em>reasoning</em> that produced it.</p>
+
+                <p>A decision trace is different. It's the record of how a conclusion was reached. Not "we use exponential backoff," because that tells me nothing. The trace is: "we tried three approaches to handle the rate limit, discovered the API has undocumented throttling at 50 req/s, and a senior engineer chose backoff after the circuit breaker pattern added too much complexity to the retry path."</p>
+
+                <p><em>That</em> is enormously valuable. It prevents the next engineer from retracing the same dead ends. It gives an AI assistant real context to make better suggestions. It turns one person's learning into the whole team's knowledge.</p>
+
+                <p>The problem? Decision traces have historically been the hardest form of knowledge to capture, because they're embedded in <em>process</em>, not output. They live in conversations, pairing sessions, debugging rabbit holes, and the messy space between a problem and its solution.</p>
+
+                <p>AI coding sessions are, for the first time, a natural medium where these traces already exist in structured form. The only question is whether we preserve them or let them evaporate like they never mattered.</p>
+
+                <h2>Context Compounds</h2>
+
+                <p>Here's the thing about context that makes it fundamentally different from documentation: it compounds.</p>
+
+                <p>A single session's context? Marginally useful. Fine. But hundreds of sessions across a team, accumulated over months? That forms something much more powerful: an emergent map of how your team <em>actually</em> builds software. Not how you <em>say</em> you build software in your engineering handbook that nobody's opened since onboarding. How you <em>actually</em> do it. The real conventions. The real boundaries. The real failure modes.</p>
+
+                <p>Some people are starting to call this a "context graph," the connected web of decisions, patterns, and lessons that define an engineering organization's institutional knowledge. It's not something you design in a workshop with sticky notes on a wall. It's something that reveals itself when you capture enough decision traces and let the patterns emerge.</p>
+
+                <p>The teams that figure this out will have a structural advantage that's hard to replicate. Their AI assistants will start sessions with real context instead of a blank slate. Their engineers will stop re-explaining the same constraints for the hundredth time. Their new hires will absorb months of institutional knowledge without anyone having to write yet another onboarding doc that goes stale in two weeks.</p>
+
+                <h2>The Role of the Engineer Is Changing</h2>
+
+                <p>There's a phrase gaining traction, "context engineering," and it captures something real about where software development is heading. The most valuable thing an engineer does isn't writing a for loop. It hasn't been for a while now. It's making the judgment call when two valid approaches exist and the right answer depends on context that isn't in the code.</p>
+
+                <p>Those judgment calls are the raw material of the context graph. They're the moments where human reasoning is most irreplaceable, and they're exactly what makes future AI sessions more useful. An engineer who resolves an ambiguous architectural tradeoff isn't just shipping a feature, they're creating a decision trace that will inform how their entire team works going forward.</p>
+
+                <p>The catch? This only works if someone, or something, is paying attention. If no one captures the trace, the decision dies with the session. And the next person starts from scratch. Again.</p>
+
+                <h2>Where We Stand</h2>
+
+                <p>This is the problem I think about a lot. Not "how do we build a better AI assistant" because there are plenty of brilliant teams working on that, and they're doing incredible work. The question that keeps nagging me is simpler and, I think, just as important:</p>
+
+                <p>What happens to all the context that AI sessions produce, and how do we make sure it doesn't just disappear?</p>
+
+                <p>The answer I keep coming back to is that context capture should be automatic, not manual. It should happen as a natural byproduct of the work, not as a separate task that competes with shipping. It should be validated for quality so teams can actually trust it. And it should be available to the whole team, not locked in one person's session history.</p>
+
+                <p>We're still early. The idea of persistent, team-wide AI context is new enough that the patterns haven't fully settled. But the underlying conviction is straightforward: the era of throwaway AI sessions is a temporary phase. As teams realize what they're losing every time a session ends, the demand for something better will become obvious.</p>
+
+                <p>The last generation of developer tools was about recording code. The next one is about preserving the reasoning that produced it.</p>
+
+                <p>And honestly? The teams that figure this out first are going to run circles around the ones that don't.</p>
             </div>
         </article>
     </main>
