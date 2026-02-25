@@ -203,6 +203,11 @@ a:hover {
     letter-spacing: 0.05em;
 }
 
+/* Projects */
+.projects {
+    margin-bottom: calc(var(--space-unit) * 5);
+}
+
 /* ========================================
    Contact
    ======================================== */

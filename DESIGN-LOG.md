@@ -1,8 +1,14 @@
 # stevenray.com 2026 — Design Log
 
-## Current State (Feb 7, 2026)
+## Current State (Feb 13, 2026)
 
-The site has been restyled from a "Neon Punk" dark theme to a "Warm Editorial" light theme. It's in a launchable state but still being refined. The overall direction is locked in — details are what's left to dial.
+The site is **live at stevenray.com** via Cloudflare Pages. The warm editorial direction is locked in. Instrument Serif has replaced Playfair Display for display type (name, page titles, article titles). All three articles are published. The site is in active refinement mode.
+
+### What's Live
+- **Homepage** — Steven Ray name in Instrument Serif at 96px, subtitle "AI builder. Design leader. Founder. Investor.", bio updated to include "AI & Design"
+- **Writings index** — 3 published articles in reverse chronological order, titles in Instrument Serif
+- **3 published articles** — all with Instrument Serif titles
+- **Custom domain** — stevenray.com + www.stevenray.com both active with SSL via Cloudflare Pages
 
 ---
 
@@ -26,24 +32,40 @@ The site has been restyled from a "Neon Punk" dark theme to a "Warm Editorial" l
 - Light warm cream `#f7f5f2` background
 - Near-black `#1a1a1a` text
 - Single warm bronze accent `#8b7355` (hover states only)
-- Playfair Display (serif) + Inter (sans-serif) — two fonts only
 - No animations, no grain, no glow, no gradients
 - Inspired by two reference images: Authentik (clean B&W editorial) and a warm cream minimalist layout
 
 ---
 
-## Decisions Made
+## Typography (Current)
 
-### Typography
-| Decision | Why |
-|----------|-----|
-| **Playfair Display for headlines** | Warm, editorial serif. Confident without being flashy. Used on name, page titles, article titles, writing list titles. |
-| **Inter for everything else** | Clean humanist sans-serif. Handles body text, labels, buttons, company names, roles, dates. Loaded at weights 300-600. |
-| **Dropped Space Grotesk** | Was the third font. Once Playfair took the display role, Space Grotesk and Inter were doing similar jobs. Two fonts is cleaner — the serif/sans contrast does all the work. Space Grotesk's geometric personality didn't vibe with Playfair. |
-| **Name in mixed case** | "Steven Ray" reads more editorial than "STEVEN RAY". Dropped `text-transform: uppercase` from `.name`. |
-| **Reduced name size** | From `clamp(4rem, 15vw, 8rem)` (~64-128px) to `clamp(2.5rem, 6vw, 4rem)` (~40-64px). Steven specifically said the large header was what he liked least. Now reads as a confident masthead, not a billboard. |
+| Element | Font | Size | Weight |
+|---------|------|------|--------|
+| **Steven Ray (name)** | Instrument Serif (`--font-name`) | 96px | 400 |
+| **Page titles** (Writings header) | Instrument Serif (`--font-name`) | 96px | 400 |
+| **Article titles** (on article pages) | Instrument Serif (`--font-name`) | clamp(2rem, 6vw, 3rem) | 400 |
+| **Writing list titles** (writings index) | Instrument Serif (`--font-name`) | clamp(1.5rem, 4vw, 2.25rem) | 400 |
+| **Body text, labels, buttons** | Inter (`--font-body`) | various | 300-600 |
+| **Other serif uses** (if any) | Playfair Display (`--font-serif`) | various | 400-700 |
 
-### Color Palette
+### Font Loading
+All HTML pages load: `Instrument Serif`, `Playfair Display` (wght 400-700), `Inter` (wght 300-600) via Google Fonts CDN.
+
+### CSS Custom Properties
+```css
+--font-name: 'Instrument Serif', Georgia, serif;    /* display: name + titles */
+--font-serif: 'Playfair Display', Georgia, serif;    /* kept for other serif uses */
+--font-body: 'Inter', -apple-system, sans-serif;     /* everything else */
+```
+
+### Typography History
+- **Dropped Space Grotesk** — was a third font, redundant once Playfair took the display role
+- **Playfair Display demoted** — was the main display font, replaced by Instrument Serif for name/titles (Feb 13). Still loaded and available via `--font-serif` for other uses.
+- **Instrument Serif adopted** — Steven chose this from Google Fonts specimen preview. Used for his name and all page/article titles. Weight 400, no bold.
+
+---
+
+## Color Palette
 | Token | Value | Usage |
 |-------|-------|-------|
 | `--color-bg` | `#f7f5f2` | Warm cream background |
@@ -52,60 +74,59 @@ The site has been restyled from a "Neon Punk" dark theme to a "Warm Editorial" l
 | `--color-text-muted` | `#8a8580` | Subtitles, labels, roles, dates, button fills |
 | `--color-accent` | `#8b7355` | Warm bronze — hover states only (links, company names, writing titles) |
 
-### Layout & Components
-| Decision | Why |
-|----------|-----|
-| **Small decorative rule after subtitle** | 48px, 2px tall, black. Inspired by the second reference image. Editorial section divider between header and content. Added via `.title::after` pseudo-element. |
-| **Bio left border: 2px solid black** | Was 3px neon pink. Now quiet and structural. |
-| **Connect buttons: filled warm gray** | Was 2px solid black outline. Steven didn't like the square outlines. Now filled `#8a8580` (matches Now/Previously heading color), cream text, 4px radius, no border. Hover darkens to black. |
-| **Button gap: 0.75rem** | Tightened from 3rem. |
-| **Credential sections untouched** | Steven said "the part I like the best is the Now and Previously sections. Super clean." Left those exactly as they were. |
-| **All borders use `rgba(0, 0, 0, 0.08)`** | Consistent, subtle warm borders replacing the old `rgba(255, 255, 255, 0.1)` dark-theme borders. |
+---
 
-### What Was Removed
-- Grain texture overlay (`body::before` with SVG noise)
-- Neon top border gradient (`body::after`)
-- `@keyframes glowPulse` animation
-- All neon color variables (`--neon-pink`, `--neon-cyan`, `--neon-lime`, `--neon-purple`)
-- Gradient text on name (`background: linear-gradient(...)`, `-webkit-background-clip: text`)
-- Text-shadow glow effects on all hover states
-- Box-shadow glow on buttons
-- `::selection` with neon pink (now black/cream)
+## Content
+
+### Homepage Copy
+- **Subtitle:** "AI builder. Design leader. Founder. Investor."
+- **Bio:** "25 years building products at the intersection of technology and design. Co-founded Dialexa, scaled it to 300+ people, sold it to IBM. Now I help companies see what's possible with AI & Design."
+- **Social links:** linkedin.com/in/stevenray, x.com/stevenray
+
+### Published Writings (reverse chronological)
+1. **The Context Problem Nobody Is Talking About** — February 2026 (`context-graphing.html`)
+2. **Team Memory** — January 2026 (`team-memory.html`)
+3. **The Memory Silo Problem** — December 2025 (`cross-llm-shared-memory.html`)
 
 ---
 
-## Files Changed
+## Hosting & Deployment
 
-| File | Changes |
-|------|---------|
-| `styles.css` | Complete restyle — new palette, two fonts, removed all neon/animation effects |
-| `index.html` | Updated Google Fonts link (Playfair Display + Inter, dropped Space Grotesk) |
-| `writings/index.html` | Updated Google Fonts link |
-| `writings/team-memory.html` | Updated Google Fonts link + inline styles (neon-cyan h2 → text color, neon-lime strong → accent, dark borders → light borders) |
-| `writings/context-graphing.html` | Updated Google Fonts link + inline styles (same pattern + coming-soon border) |
-| `writings/cross-llm-shared-memory.html` | Updated Google Fonts link + inline styles (same pattern + coming-soon border) |
+- **Platform:** Cloudflare Pages
+- **Project name:** `stevenray-com`
+- **Domains:** `stevenray.com`, `www.stevenray.com`, `stevenray-com.pages.dev`
+- **Git repo:** `github.com/StevenRay/stevenray.com`
+- **Deploy trigger:** Push to `main` branch auto-deploys
+- **DNS:** Cloudflare zone `1b01861b3a68d79ee29becd1fbdba133`, nameservers on Cloudflare (mckenzie/miguel)
+- **Domain registrar:** GoDaddy (original), DNS moved to Cloudflare
+
+---
+
+## Layout & Components
+| Decision | Why |
+|----------|-----|
+| **Small decorative rule after subtitle** | 48px, 2px tall, black. Editorial section divider between header and content. Added via `.title::after` pseudo-element. |
+| **Bio left border: 2px solid black** | Quiet and structural. |
+| **Bio max-width: 640px** | Widened from 600px to prevent "Design." from orphaning after bio copy update. |
+| **Connect buttons: filled warm gray** | Filled `#8a8580`, cream text, 4px radius, no border. Hover darkens to black. |
+| **Button gap: 0.75rem** | Tightened from 3rem. |
+| **Credential sections untouched** | Steven said "the part I like the best is the Now and Previously sections. Super clean." |
+| **All borders use `rgba(0, 0, 0, 0.08)`** | Consistent, subtle warm borders. |
 
 ---
 
 ## What Still Needs Work
 
-### Font Exploration
-Steven wants to keep exploring serif options. Playfair Display is working but may not be the final choice. Suggested resources:
-- **Typewolf** (typewolf.com) — curated, shows fonts in real-world context
-- **Google Fonts** — free, easy to swap since already using it
-- **Font Share** (fontshare.com) — free, high-quality from Indian Type Foundry
-- **Klim Type Foundry** (klim.co.nz) — premium editorial faces (Tiempos, Untitled Serif)
-- **Fonts In Use** (fontsinuse.com) — see fonts in actual design work
-
 ### Writings Link Placement
 Currently buried in the footer. If writings are a real content pillar, they deserve more prominence — possibly in the header area or as a visible nav element.
 
 ### Overall Polish
-Steven said "it's getting there" and "let's launch this for now until we can get it nailed down." The direction is right but refinement continues. Areas to revisit:
+Areas to revisit:
 - Connect section heading ("Connect") — is it needed? Could just be the buttons.
-- Mobile responsive behavior at 600px breakpoint with the new smaller name
+- Mobile responsive behavior at 600px breakpoint — name is now 96px fixed, may need responsive scaling
 - Whether the decorative rule after the subtitle is earning its keep
-- Article page inline styles could potentially be moved to the main stylesheet for consistency (currently each article has a "go wild, each writing is its own canvas" approach)
+- Article page inline styles could potentially be moved to the main stylesheet for consistency
+- Open Graph meta descriptions should be updated to match new article titles
 
 ### Reference Images
 Two reference images Steven provided are on his Desktop:
@@ -120,9 +141,26 @@ Two reference images Steven provided are on his Desktop:
 - **5 HTML files total**: homepage + writings hub + 3 article pages
 - **1 shared stylesheet** (`styles.css`) + per-article inline `<style>` blocks
 - **CSS custom properties** for all design tokens
-- **Google Fonts CDN** for typography
+- **Google Fonts CDN** for typography (Instrument Serif, Playfair Display, Inter)
 - **Max width**: 900px
 - **Spacing unit**: 1.5rem (`--space-unit`)
 - **Responsive breakpoints**: 768px (credentials grid collapse), 600px (name resize, button stack)
 - **Archive of previous versions**: `archive/` folder + `archive of stevenray.com 2025/` folder
-- **Git history** preserves the neon punk version if we ever want to reference it
+- **Git history** preserves all previous versions
+
+---
+
+## Session Log — Feb 13, 2026
+
+Changes made this session:
+1. Connected custom domains (stevenray.com + www) to Cloudflare Pages
+2. Fixed LinkedIn and X links (stevenaray → stevenray)
+3. Switched name font from Playfair Display to **Instrument Serif** at 96px, weight 400
+4. Applied Instrument Serif to writings page title, all article titles, and writing list titles
+5. Updated subtitle to "AI builder. Design leader. Founder. Investor."
+6. Updated bio to "AI & Design"
+7. Widened bio max-width from 600px to 640px to prevent orphaned "Design."
+8. Published **Context Graphing** article (was "Coming Soon")
+9. Published **Cross LLM Shared Memory** article (was "Coming Soon"), dated December 2025
+10. Reordered writings to reverse chronological (Feb → Jan → Dec)
+11. Sized writing list titles to clamp(1.5rem, 4vw, 2.25rem)
