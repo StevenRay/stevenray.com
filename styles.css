@@ -212,6 +212,7 @@ a:hover {
    Contact
    ======================================== */
 .contact {
+    margin-top: calc(var(--space-unit) * 3);
     margin-bottom: calc(var(--space-unit) * 2);
 }
 
