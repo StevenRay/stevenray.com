@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Memory Maintenance — Your AI remembers everything about you. But nobody's asking whether it should.">
+    <meta name="author" content="Steven Ray">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Memory Maintenance — Steven Ray">
+    <meta property="og:description" content="Your AI remembers everything about you. But nobody's asking whether it should.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://stevenray.com/writings/memory-maintenance">
+
+    <title>Memory Maintenance — Steven Ray</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /*
+         * UNIQUE STYLES FOR THIS ARTICLE
+         * Go wild. Each writing is its own canvas.
+         */
+        .article-header {
+            margin-bottom: calc(var(--space-unit) * 4);
+            padding-bottom: calc(var(--space-unit) * 2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .article-title {
+            font-family: var(--font-name);
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: calc(var(--space-unit) * 1);
+        }
+
+        .article-meta {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .article-content {
+            max-width: 680px;
+        }
+
+        .article-content p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: calc(var(--space-unit) * 1.5);
+        }
+
+        .article-content h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: calc(var(--space-unit) * 3);
+            margin-bottom: calc(var(--space-unit) * 1);
+            color: var(--color-text);
+        }
+
+        .article-content code {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            background: rgba(0, 0, 0, 0.06);
+            padding: 0.15em 0.4em;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header class="header">
+            <a href="../index.html" class="back-link">Steven Ray</a>
+            <span class="back-link" style="margin: 0 0.5rem;">/</span>
+            <a href="index.html" class="back-link">Writings</a>
+        </header>
+
+        <article>
+            <header class="article-header">
+                <h1 class="article-title">Memory Maintenance</h1>
+                <p class="article-meta">February 2026</p>
+            </header>
+
+            <div class="article-content">
+                <p>Your AI assistant remembers that you were interested in Rust six months ago. It remembers the side project you abandoned in October. It remembers the tech stack you were evaluating for a client engagement that ended before Thanksgiving. And it keeps bringing all of that into every conversation like it happened yesterday.</p>
+
+                <p>Nobody told it to stop. Nobody told it those things don't matter anymore. Because there's no mechanism for that. AI memory is append-only. Things go in. Nothing comes out.</p>
+
+                <p>We spent the last year solving the memory <em>creation</em> problem. Context files, session logs, team memory, persistent knowledge bases. All of that work was necessary, and it's made AI assistants dramatically more useful. But we skipped a step. We built the filing cabinet and forgot to schedule the clean-out.</p>
+
+                <h2>The Accumulation Problem</h2>
+
+                <p>Memory accumulation is invisible until it isn't. At first, every memory is useful. Your AI knows your preferences, your project structures, your conventions. It feels like magic. Six months later, you have a hundred beliefs sitting in context files, and a meaningful percentage of them are wrong. Not because they were ever inaccurate, but because <em>you</em> changed.</p>
+
+                <p>You moved on from that framework. You dropped that side project. You shifted your design preferences after working with a new team. But the AI doesn't know any of that. It's still operating on the version of you from six months ago, blended with the version of you from today, and it can't tell the difference.</p>
+
+                <p>This is the maintenance problem. And it gets worse the longer you use AI tools, which is the exact opposite of how it should work. The more an AI knows about you, the more likely some of what it knows is stale. Your most loyal users accumulate the most debt.</p>
+
+                <h2>Not All Memories Age</h2>
+
+                <p>Here's where it gets interesting. The instinct is to solve this with a timer. Flag anything older than 90 days. Surface it for review. Simple.</p>
+
+                <p>But that's wrong. And the reason it's wrong reveals something important about the nature of AI memory.</p>
+
+                <p>Consider two memories an AI might hold about you. The first: "Interested in Streamlit for data applications." The second: "Project uses Space Grotesk and Inter for typography." Both are six months old. Both haven't been explicitly referenced in recent conversations. A time-based system would flag them both.</p>
+
+                <p>But they're fundamentally different kinds of knowledge. The first is about <em>your state of mind</em>, an interest, an intention, a curiosity. Those decay naturally. What you were curious about in August says very little about what you care about in February. The second is about <em>the state of an artifact</em>, a fact about a codebase. That font is still in the config file. It hasn't changed. Flagging it as stale would be noise.</p>
+
+                <p>This distinction matters because it means memory maintenance can't be dumb. It has to understand what kind of thing it's looking at before it decides whether that thing has gone stale.</p>
+
+                <h2>A Taxonomy of Beliefs</h2>
+
+                <p>When you start categorizing what an AI actually remembers about you, a clear taxonomy emerges. Interests and intentions decay quickly. "Exploring," "considering," "planning to," "interested in." These are snapshots of a mental state that shifts constantly. Ninety days without reinforcement and they're probably outdated.</p>
+
+                <p>Active projects decay on a similar timeline. "Currently working on" is a statement with a short shelf life. If there's been no activity in two months, the project is either done or abandoned. Either way, the memory needs updating.</p>
+
+                <p>Preferences decay slowly. "Prefers dark mode." "Likes minimal abstractions." "Defaults to TypeScript." These tend to be durable, but they do shift. The right trigger for a preference isn't age, it's <em>contradiction</em>. If your recent behavior consistently diverges from a stated preference, that's the signal.</p>
+
+                <p>Artifact facts, like the font in the config file, don't decay on a schedule at all. They're true until the artifact changes. The only valid staleness check is to look at the file itself and confirm. Did the font actually get swapped? No? Then the memory is current. Move on.</p>
+
+                <p>And then there's a category I'd call structural knowledge: how your codebase is organized, what your API returns, what port your dev server runs on. These are essentially environment facts. They don't age. They break. There's a difference.</p>
+
+                <h2>The Review as Mirror</h2>
+
+                <p>There's a secondary value to memory maintenance that surprised me when I started thinking about it. The review process itself is useful, independent of the outcome.</p>
+
+                <p>Scrolling through what an AI believes about you is a strange kind of self-audit. You see the projects you said you'd get back to. The technologies you were going to learn. The priorities you described six months ago that don't match where you've actually spent your time. It's a mirror, and like most mirrors, it's more honest than comfortable.</p>
+
+                <p>This isn't a productivity feature. It's a reflection mechanism disguised as one. You're not just cleaning up stale data. You're confronting the gap between your stated intentions and your actual behavior. That's worth something, even if you never change a single memory.</p>
+
+                <h2>Where the Maintenance Layer Lives</h2>
+
+                <p>The question of form factor matters. A standalone app for memory maintenance sounds reasonable until you think about adoption. Nobody is going to open a separate application to review what their AI remembers about them. The friction is too high. It would work for a week and then join the graveyard of well-intentioned productivity tools.</p>
+
+                <p>The better approach is to embed maintenance where the work already happens. A command inside your AI coding environment. A periodic prompt from an agent you already use. Something that shows up in context, not something you have to go find.</p>
+
+                <p>The even better approach is to make it mobile. A weekly notification on your phone: "Your AI has 4 memories older than 90 days. Review?" You triage in thirty seconds from the couch. Keep, archive, delete, next. That's the interaction pattern that actually survives contact with real human behavior.</p>
+
+                <p>The ideal is probably both. A deep review when you're at your desk, working in context, where the tool can actually cross-reference memories against your codebase and verify facts. And a lightweight mobile pass for the quick stuff, the interests and intentions that you can triage with a glance.</p>
+
+                <h2>The Missing Primitive</h2>
+
+                <p>I keep coming back to the idea that memory maintenance is a <em>missing primitive</em> in the AI toolchain. We have memory creation. We have memory retrieval. We have context injection and session persistence and team-wide knowledge bases. But we don't have memory <em>review</em>. We don't have memory <em>expiry</em>. We don't have a mechanism for a human to look at what their AI believes and say, "That's not me anymore."</p>
+
+                <p>The tools that figure this out will have a meaningful advantage. Not because memory maintenance is glamorous, but because accuracy compounds just like context does. An AI with fifty current, validated beliefs about you will outperform one with two hundred beliefs where a quarter of them are wrong. Precision beats volume. It always has.</p>
+
+                <p>We spent the last year teaching AI to remember. Now we need to teach it to forget.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <a href="index.html" class="footer-link">All Writings</a>
+        <p>&copy; 2026</p>
+    </footer>
+</body>
+</html>
